@@ -1,41 +1,42 @@
 const mongoose = require("mongoose");
 
-// Buat skema User
-const UserSchema = new mongoose.Schema({
-    // _id akan dibuat otomatis oleh MongoDB
-    username: {
-        type: String,
-        required: [true, "Username harus diisi"],
-        unique: true,
-        trim: true, // menghapus spasi di awal dan akhir
-    },
-    email: {
-        type: String,
-        required: [true, "Email harus diisi"],
-        unique: true,
-        match: [/^\S+@\S+\.\S+$/, 'Harap isi alamat email yang valid'], //Regex untuk validasi format email
-    },
-    password: {
-        type: String,
-        required: [true, 'kata sandi harus diisi.'],
-        minlenght: [6, 'kata sandi harus diisi.'],
-        select: false, //Penting : Jangan sertakan password saat query GET
-    },
-    address: {
-        type: String,
-        required: false,
-    },
-    isAdmin: {
-        type: Boolean,
-        default: false,
-    },
-    createAt: {
-        type: Date,
-        default: Date.now,
-    }
+// buat schema user
+const userSchema = new mongoose.Schema({
+  username: {
+    type: String,
+    requiried: true,
+    unique: true,
+    trim: true,
+  },
+  email: {
+    type: String,
+    required: [true, "Email Harus Diisi"],
+    unique: true,
+    match: [
+      /^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/,
+      "Harap isi alamat email yang valid",
+    ], // Regex untuk validasi format email
+  },
+  password: {
+    type: String,
+    required: [true, "Kata Sandi Harus Diisi."],
+    minlength: [6, "Kata sandi minimal 6 karakter."],
+    select: false, // penting jangan sertakan password saat mengambil data user
+  },
+  address: {
+    type: String,
+    default: "Belum diisi",
+  },
+  isAdmin: {
+    type: Boolean,
+    default: false,
+  },
+  createAt: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
-// Buat model dari Schema
-const User = mongoose.model('User', UserSchema);
-
-module.exports = User;
+// buat model dari schema
+const User = mogoose.model("User", userSchema);
+modeule.exports = User;

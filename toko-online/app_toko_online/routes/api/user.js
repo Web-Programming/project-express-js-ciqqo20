@@ -2,11 +2,15 @@ const express = require("express");
 const router = express.Router();
 const userController = require("../../controllers/user");
 
-// Endpoint CRUD User
-router.post("/", userController.createUser);      // POST /api/users/
-router.get("/", userController.getAllUsers);      // GET /api/users/
-router.get("/:id", userController.getUserById);   // GET /api/users/:id
-router.put("/:id", userController.updateUser);    // PUT /api/users/:id
-router.delete("/:id", userController.deleteUser); // DELETE /api/users/:id
+// url create : POST (/api/user)
+router.post("/", userController.register);
+// url read all  : GET (/api/user)
+router.get("/", userController.getAllUsers);
+// url read one : detail = GET (/api/user/:id)
+router.get("/:id", userController.getUserById);
+// url update : PUT (/api/user/:id)
+router.put("/:id", userController.updateUSer);
+// url delete : DELETE (/api/user/:id)
+router.delete("/:id", userController.deleteUser);
 
-module.exports = router;
+module.exports = router;

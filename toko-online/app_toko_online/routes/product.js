@@ -1,10 +1,12 @@
 var express = require("express");
 var router = express.Router();
-var productController = require("../controllers/product");
+//const products = require('../data/products.json');
+//var Products = require("../models/products");
+//const { products } = require('../controllers/main');
+var productController = require("../controllers/products");
 
-router.get("apiall", productController.all);
-router.get("/all, productController.index");
+router.get("/apiall", productController.apiall);
+router.get("/all", productController.index);
 router.get("/:id", productController.detail);
 
-
-module.exports = router;
+module.exports = router;
